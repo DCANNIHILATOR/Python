@@ -20,7 +20,7 @@ while len(d_cards) != 2:
     random.shuffle(deck)
     d_cards.append(deck.pop())
     if len(d_cards) == 2:
-        print('The cards dealer has are X ', d_cards[1])
+        print('The cards dealer has are [X, {0}] '.format(d_cards[1]))
 
 # Displaying the Player's cards
 while len(p_cards) != 2:
@@ -53,7 +53,7 @@ def dealer_choice():
             random.shuffle(deck)
             d_cards.append(deck.pop())
 
-    print("Dealer has total " + str(sum(d_cards)) + "with the cards ", d_cards)
+    print("Dealer has total {0} {1}{2}".format(str(sum(d_cards)), "with the cards ", d_cards))
 
     if sum(p_cards) == sum(d_cards):
         print("***************The match is tie !!****************")
@@ -62,31 +62,41 @@ def dealer_choice():
     if sum(d_cards) == 21:
         if sum(p_cards) < 21:
             print("***********************Dealer is the Winner !!******************")
+            exit()
         elif sum(p_cards) == 21:
             print("********************There is tie !!**************************")
+            exit()
         else:
             print("***********************Dealer is the Winner !!******************")
+            exit()
 
     elif sum(d_cards) < 21:
         if sum(p_cards) < 21 and sum(p_cards) < sum(d_cards):
             print("***********************Dealer is the Winner !!******************")
+            exit()
         if sum(p_cards) == 21:
             print("**********************Player is winner !!**********************")
+            exit()
         if sum(p_cards) < 21 and sum(p_cards) > sum(d_cards):
             print("**********************Player is winner !!**********************")
+            exit()
+            
 
     else:
         if sum(p_cards) < 21:
             print("**********************Player is winner !!**********************")
+            exit()
         elif sum(p_cards) == 21:
             print("**********************Player is winner !!**********************")
+            exit()
         else:
             print("***********************Dealer is the Winner !!******************")
+            exit()
 
 
 while sum(p_cards) < 21:
 
-    k = input('Want to hit or stay?\n Press 1 for hit and 0 for stay ')
+    k = int(input('Want to hit or stay?\n Press 1 for hit and 0 for stay '))
     if k == 1:
         random.shuffle(deck)
         p_cards.append(deck.pop())
@@ -94,10 +104,11 @@ while sum(p_cards) < 21:
               + ' with the cards ', p_cards)
         if sum(p_cards) > 21:
             print('*************You are BUSTED !*************\n Dealer Wins !!')
+            exit()
         if sum(p_cards) == 21:
             print('*******************You are the Winner !!*****************************')
+            exit()
 
 
     else:
         dealer_choice()
-        break
